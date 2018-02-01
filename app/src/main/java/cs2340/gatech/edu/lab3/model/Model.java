@@ -51,10 +51,10 @@ public class Model {
         _courses.add(new Course( "TQM", "4321", SchoolCode.IE));
         _courses.add(new Course("Concrete Ideas", "5432", SchoolCode.AR));
         _courses.add(new Course("Calc I", "2213", SchoolCode.MATH));
-        _courses.get(0).getStudents().add(new Student("Bob", "CS"));
-        _courses.get(0).getStudents().add(new Student("Sally", "ISYE"));
-        _courses.get(1).getStudents().add(new Student("Fred", "Math"));
-        _courses.get(1).getStudents().add(new Student("Edith", "CM"));
+        _courses.get(0).getStudents().add(new Student("Bob", "CS", ClassStanding.FRESHMAN));
+        _courses.get(0).getStudents().add(new Student("Sally", "ISYE", ClassStanding.JUNIOR));
+        _courses.get(1).getStudents().add(new Student("Fred", "Math", ClassStanding.SOPHOMORE));
+        _courses.get(1).getStudents().add(new Student("Edith", "CM", ClassStanding.SENIOR));
         _currentCourse = _courses.get(0);
     }
 
@@ -145,5 +145,7 @@ public class Model {
 
         //update the major
         existing.setMajor(student.getMajor());
+
+        existing.setStanding(student.getStanding());
     }
 }

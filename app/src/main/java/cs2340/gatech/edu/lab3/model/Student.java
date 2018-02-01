@@ -33,6 +33,7 @@ public class Student implements Parcelable {
     /** this students major */
     private String _major;
 
+    private ClassStanding _standing;
 
     /* **********************
      * Getters and setters
@@ -45,6 +46,9 @@ public class Student implements Parcelable {
 
     public String getMajor() {return _major; }
     public void setMajor(String major) { _major = major; }
+
+    public ClassStanding getStanding() {return _standing;}
+    public void setStanding(ClassStanding standing) {_standing = standing;}
 
     /**
      * Lookup a major based on its code.  Returns the postion of that
@@ -63,6 +67,18 @@ public class Student implements Parcelable {
         return 0;
     }
 
+    /**
+     * Make a new student
+     * @param name      the student's name
+     * @param major     the student's major
+     * @param grade     the student's classStanding
+     */
+    public Student(String name, String major, ClassStanding grade) {
+        _name = name;
+        _major= major;
+        _id = Student.Next_Id++;
+        _standing= grade;
+    }
 
     /**
      * Make a new student
@@ -70,9 +86,7 @@ public class Student implements Parcelable {
      * @param major     the student's major
      */
     public Student(String name, String major) {
-        _name = name;
-        _major= major;
-        _id = Student.Next_Id++;
+        this(name, major, ClassStanding.FRESHMAN);
     }
 
     /**
@@ -80,7 +94,7 @@ public class Student implements Parcelable {
      * This constructor only for GUI use in edit/new student dialog
      */
     public Student() {
-        this("enter new name" , "NA");
+        this("enter new name" , "NA", ClassStanding.FRESHMAN);
     }
 
     /**
@@ -89,7 +103,7 @@ public class Student implements Parcelable {
      */
     @Override
     public String toString() {
-        return _name + " " + _major;
+        return _name + " " + _major + " " + _standing;
     }
 
 
@@ -113,8 +127,7 @@ public class Student implements Parcelable {
         _name = in.readString();
         _major = in.readString();
         _id = in.readInt();
-
-
+        _standing = (ClassStanding) in.readSerializable();
     }
 
     @Override
@@ -132,7 +145,7 @@ public class Student implements Parcelable {
          dest.writeString(_name);
          dest.writeString(_major);
          dest.writeInt(_id);
-
+         dest.writeSerializable(_standing);
 
     }
 
