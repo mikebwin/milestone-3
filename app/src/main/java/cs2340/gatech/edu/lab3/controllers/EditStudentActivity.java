@@ -33,6 +33,7 @@ public class EditStudentActivity extends AppCompatActivity implements AdapterVie
        Keeping track of spinner changes.  Not really used right now, probably don't need this.
      */
     private String _major = "NA";
+    private ClassStanding _standing = null;
 
     /* ***********************
        Data for student being edited.
@@ -88,6 +89,7 @@ public class EditStudentActivity extends AppCompatActivity implements AdapterVie
         if (getIntent().hasExtra(CourseDetailFragment.ARG_STUDENT_ID)) {
             _student = (Student) getIntent().getParcelableExtra(CourseDetailFragment.ARG_STUDENT_ID);
             majorSpinner.setSelection(Student.findPosition(_student.getMajor()));
+            classSpinner.setSelection(Student.getClassStanding(_student.getStanding()));
             editing = true;
         } else {
             _student = new Student();

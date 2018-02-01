@@ -51,6 +51,24 @@ public class Student implements Parcelable {
     public void setStanding(ClassStanding standing) {_standing = standing;}
 
     /**
+     * Takes a ClassStanding and returns position of that grade in enum
+     *
+     * @param standing the grade
+     *
+     * @return the int that represents the class standing in the spinner dropdown menu
+     */
+    public static int getClassStanding(ClassStanding standing) {
+        int grade = 0;
+        switch(standing){
+            case FRESHMAN: grade = 0; break;
+            case SOPHOMORE: grade = 1; break;
+            case JUNIOR: grade = 2; break;
+            case SENIOR: grade = 3; break;
+        }
+        return grade;
+    }
+
+    /**
      * Lookup a major based on its code.  Returns the postion of that
      * major in the array
      *
