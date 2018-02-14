@@ -9,7 +9,6 @@ public enum ClassStanding {
     FRESHMAN ("FR"), SOPHOMORE("SO"), JUNIOR("JR"), SENIOR("SR");
 
     private final String standing;
-    private int check;
 
     ClassStanding(String grade) {
         standing = grade;
